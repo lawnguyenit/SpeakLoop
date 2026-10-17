@@ -1,0 +1,200 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "minLength": 1,
+      "title": "Id",
+      "type": "string"
+    },
+    "audio_path": {
+      "minLength": 1,
+      "title": "Audio Path",
+      "type": "string"
+    },
+    "audio_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Audio Sha256"
+    },
+    "expected_text": {
+      "minLength": 1,
+      "title": "Expected Text",
+      "type": "string"
+    },
+    "target_phoneme": {
+      "enum": [
+        "/ɪ/",
+        "/iː/"
+      ],
+      "title": "Target Phoneme",
+      "type": "string"
+    },
+    "segment_start": {
+      "minimum": 0,
+      "title": "Segment Start",
+      "type": "integer"
+    },
+    "segment_end": {
+      "exclusiveMinimum": 0,
+      "title": "Segment End",
+      "type": "integer"
+    },
+    "expected_class": {
+      "enum": [
+        "correct",
+        "substitution",
+        "ambiguous",
+        "unusable"
+      ],
+      "title": "Expected Class",
+      "type": "string"
+    },
+    "human_label": {
+      "minLength": 1,
+      "title": "Human Label",
+      "type": "string"
+    },
+    "observed_phoneme": {
+      "anyOf": [
+        {
+          "enum": [
+            "/ɪ/",
+            "/iː/"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Observed Phoneme"
+    },
+    "annotation_status": {
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "reviewed"
+      ],
+      "title": "Annotation Status",
+      "type": "string"
+    },
+    "annotators": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Annotators",
+      "type": "array"
+    },
+    "speaker_id": {
+      "minLength": 1,
+      "title": "Speaker Id",
+      "type": "string"
+    },
+    "l1": {
+      "minLength": 1,
+      "title": "L1",
+      "type": "string"
+    },
+    "device": {
+      "minLength": 1,
+      "title": "Device",
+      "type": "string"
+    },
+    "noise_condition": {
+      "enum": [
+        "clean",
+        "noisy",
+        "unknown"
+      ],
+      "title": "Noise Condition",
+      "type": "string"
+    },
+    "condition": {
+      "default": "ordinary",
+      "enum": [
+        "ordinary",
+        "valid_accent_variant",
+        "device_variation"
+      ],
+      "title": "Condition",
+      "type": "string"
+    },
+    "level": {
+      "enum": [
+        "word",
+        "sentence"
+      ],
+      "title": "Level",
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "development",
+        "calibration",
+        "held_out"
+      ],
+      "title": "Split",
+      "type": "string"
+    },
+    "source_kind": {
+      "enum": [
+        "human",
+        "synthetic",
+        "fixture"
+      ],
+      "title": "Source Kind",
+      "type": "string"
+    },
+    "source_reference": {
+      "minLength": 1,
+      "title": "Source Reference",
+      "type": "string"
+    },
+    "license_or_consent": {
+      "minLength": 1,
+      "title": "License Or Consent",
+      "type": "string"
+    },
+    "local_processing_allowed": {
+      "default": false,
+      "title": "Local Processing Allowed",
+      "type": "boolean"
+    },
+    "cloud_processing_allowed": {
+      "default": false,
+      "title": "Cloud Processing Allowed",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "audio_path",
+    "expected_text",
+    "target_phoneme",
+    "segment_start",
+    "segment_end",
+    "expected_class",
+    "human_label",
+    "speaker_id",
+    "l1",
+    "device",
+    "noise_condition",
+    "level",
+    "split",
+    "source_kind",
+    "source_reference",
+    "license_or_consent"
+  ],
+  "title": "Clip",
+  "type": "object"
+}

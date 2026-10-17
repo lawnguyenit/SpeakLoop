@@ -1,0 +1,153 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+    },
+    "provider_version": {
+      "minLength": 1,
+      "title": "Provider Version",
+      "type": "string"
+    },
+    "policy_version": {
+      "minLength": 1,
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "evidence_reference": {
+      "minLength": 1,
+      "title": "Evidence Reference",
+      "type": "string"
+    },
+    "evidence_kind": {
+      "enum": [
+        "none",
+        "asr_only",
+        "acoustic",
+        "phoneme_recognition"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+    },
+    "audio_status": {
+      "enum": [
+        "invalid",
+        "uncertain",
+        "valid"
+      ],
+      "title": "Audio Status",
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "likely_error",
+        "supported_correct",
+        "abstain",
+        "invalid_audio"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "hypothesis": {
+      "anyOf": [
+        {
+          "enum": [
+            "/ɪ/",
+            "/iː/"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Hypothesis"
+    },
+    "segment_start": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Segment Start"
+    },
+    "segment_end": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Segment End"
+    },
+    "calibrated_confidence": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Calibrated Confidence"
+    },
+    "calibration_reference": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Calibration Reference"
+    },
+    "abstain_reason": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Abstain Reason"
+    },
+    "latency_ms": {
+      "minimum": 0,
+      "title": "Latency Ms",
+      "type": "number"
+    }
+  },
+  "required": [
+    "clip_id",
+    "provider_version",
+    "policy_version",
+    "evidence_reference",
+    "evidence_kind",
+    "audio_status",
+    "decision",
+    "latency_ms"
+  ],
+  "title": "Prediction",
+  "type": "object"
+}

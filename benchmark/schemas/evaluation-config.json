@@ -1,0 +1,104 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "default": "evaluation-v1",
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+    },
+    "min_held_out": {
+      "default": 120,
+      "exclusiveMinimum": 0,
+      "title": "Min Held Out",
+      "type": "integer"
+    },
+    "min_per_class": {
+      "default": 30,
+      "exclusiveMinimum": 0,
+      "title": "Min Per Class",
+      "type": "integer"
+    },
+    "min_speakers": {
+      "default": 4,
+      "minimum": 2,
+      "title": "Min Speakers",
+      "type": "integer"
+    },
+    "min_vietnamese_speakers": {
+      "default": 2,
+      "minimum": 1,
+      "title": "Min Vietnamese Speakers",
+      "type": "integer"
+    },
+    "min_devices": {
+      "default": 2,
+      "minimum": 1,
+      "title": "Min Devices",
+      "type": "integer"
+    },
+    "min_error_claims": {
+      "default": 40,
+      "exclusiveMinimum": 0,
+      "title": "Min Error Claims",
+      "type": "integer"
+    },
+    "min_claim_confidence": {
+      "default": 0.95,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Min Claim Confidence",
+      "type": "number"
+    },
+    "error_precision": {
+      "default": 0.95,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Error Precision",
+      "type": "number"
+    },
+    "precision_lower_bound": {
+      "default": 0.9,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Precision Lower Bound",
+      "type": "number"
+    },
+    "max_unsafe_claim_rate": {
+      "default": 0.05,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Max Unsafe Claim Rate",
+      "type": "number"
+    },
+    "min_invalid_detection": {
+      "default": 0.95,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Min Invalid Detection",
+      "type": "number"
+    },
+    "max_false_rejection": {
+      "default": 0.1,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Max False Rejection",
+      "type": "number"
+    },
+    "min_ambiguous_abstention": {
+      "default": 0.9,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Min Ambiguous Abstention",
+      "type": "number"
+    },
+    "max_p95_latency_ms": {
+      "default": 8000,
+      "exclusiveMinimum": 0,
+      "title": "Max P95 Latency Ms",
+      "type": "number"
+    }
+  },
+  "title": "EvaluationConfig",
+  "type": "object"
+}

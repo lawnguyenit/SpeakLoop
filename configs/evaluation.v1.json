@@ -1,0 +1,17 @@
+{
+  "version": "evaluation-v1",
+  "min_held_out": 120,
+  "min_per_class": 30,
+  "min_speakers": 4,
+  "min_vietnamese_speakers": 2,
+  "min_devices": 2,
+  "min_error_claims": 40,
+  "min_claim_confidence": 0.95,
+  "error_precision": 0.95,
+  "precision_lower_bound": 0.90,
+  "max_unsafe_claim_rate": 0.05,
+  "min_invalid_detection": 0.95,
+  "max_false_rejection": 0.10,
+  "min_ambiguous_abstention": 0.90,
+  "max_p95_latency_ms": 8000
+}

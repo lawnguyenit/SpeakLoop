@@ -2,7 +2,15 @@
 
 **Last updated:** 2026-10-17
 
-Evaluation infrastructure is starting in `src/speakloop/`. No learner-facing UI/API exists yet. The table below is a capability map for the MVP; remaining TBD entries are not implemented.
+Offline evaluation infrastructure exists in `src/speakloop/`. No learner-facing UI/API exists yet. Implemented infrastructure owners are listed below; the MVP table still describes future app capabilities.
+
+| Implemented capability | Owner/source | Consumers | Data/errors | Verification |
+|---|---|---|---|---|
+| Benchmark/prediction/config contracts | Codex: `contracts.py` | CLI and exported `benchmark/schemas/` | Pydantic validation; human-source metadata does not prove annotation truth | Contract/path/unsupported-claim tests |
+| Manifest integrity and split checks | Codex: `benchmark.py` | `speakloop validate` and `evaluate` | Duplicate IDs/paths/digests, speaker leakage, permission/digest/file checks | Leakage/missing-data tests |
+| Diagnostic metrics and numeric/data gates | Codex: `evaluation.py` | `speakloop evaluate` | Precision/Wilson, unsafe claims, abstention, coverage, latency; insufficient/fail/pass | Simulated report tests; no real pronunciation evidence |
+| WAV physical validity | Codex: `audio.py` | `speakloop audio` | Invalid or needs-speech-check result; never approves pronunciation | Generated signal/malformed-audio tests |
+| Offline CLI and packaging | Codex: `cli.py`, `pyproject.toml`, `uv.lock` | Local developer commands | Exit 0/2/3; UTF-8 saved JSON and ASCII-safe stdout | Installed CLI smoke and legacy-terminal regression |
 
 | Capability | UI owner | API/domain owner | Data | Audio/model | Errors/logging | Tests/deploy |
 |---|---|---|---|---|---|---|

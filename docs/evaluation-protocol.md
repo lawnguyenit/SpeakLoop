@@ -6,7 +6,7 @@
 
 ## Claims and labels
 
-The unit of evaluation is one known target vowel in a known word/utterance, not an overall accent score. A sentence with multiple targets must be split into separately labeled target examples before evaluation. Character offsets identify the intended written span, not phoneme timestamps. Acoustic time boundaries, when available, are separate evidence.
+The unit of evaluation is one known target vowel in a known word/utterance, not an overall accent score. Select one primary target per recording for this initial benchmark; do not count the same recording multiple times when a sentence contains several target vowels. A future multi-target evaluator will need explicit grouping rather than treating those targets as independent clips. Character offsets identify the intended written span, not phoneme timestamps. Acoustic time boundaries, when available, are separate evidence.
 
 | Label | Meaning | Safe output |
 |---|---|---|
@@ -19,7 +19,7 @@ Two independent reviewers annotate without seeing model predictions; record pseu
 
 ## Benchmark population, splits, and provenance
 
-Goal for the initial collection: 300 human examples across at least 10 speakers, with development (4 speakers), calibration (2), and held-out (4) speakers separated. These are collection targets, not claims about available data. The held-out slice must contain at least 120 clips, including at least 30 each of correct/substitution/ambiguous/unusable, at least two Vietnamese-L1 speakers, at least two devices, and at least one valid accent-variant subset. Include both vowels and word/sentence levels; report all slices. Deliberately noisy derivatives keep their original speaker and split. Do not duplicate an original utterance across splits.
+Goal for the initial collection: 360 human examples across at least 10 speakers, with development (4 speakers), calibration (2), and held-out (4) speakers separated. These are collection targets, not claims about available data. The planned held-out collection is 160 clips: 60 substitutions, 40 correct, 30 ambiguous and 30 unusable. The data gate requires at least 120 clips and 30 in each class, at least two Vietnamese-L1 speakers, at least two devices, and at least one valid accent-variant subset. The larger planned collection allows enough error claims for a precision estimate. Include both vowels and word/sentence levels; report all slices. Deliberately noisy derivatives keep their original speaker and split. Do not duplicate an original utterance across splits.
 
 Development is for debugging, calibration is for thresholds/probability fitting, and held-out is opened once for a frozen provider/model/policy version. A failed holdout cannot be reused as a fresh final test after tuning. Freeze the manifest SHA-256, code revision, model revision, decoding settings, policy and thresholds before final inference. Separate held-out lesson items from diagnostic clips; do not train and assess retention on the same recordings.
 
@@ -42,6 +42,8 @@ These refine the earlier provisional plan into initial evaluation rules. They ca
 | Latency | p95 of total record-completion-to-feedback time, including retries | ≤8 s on declared hardware/network; cold start separately |
 
 Missing results, duplicate IDs, unknown IDs and provider errors are not silently discarded. A completed result is required for every evaluated clip; a provider failure is represented as abstention with its reason and latency. Null confidence is allowed. Raw provider confidence is not calibrated confidence. A calibration artifact must identify the provider/model revision, development/calibration data and method before application policy can emit specific claims.
+
+The initial minimum calibrated confidence for a specific claim is 0.95. Every report uses a single frozen provider/policy version and calibration reference; combining favorable outputs from different versions in one run is rejected. These references still require human inspection: a schema cannot prove that an artifact or calibration method is valid.
 
 Gate status is `insufficient_evidence` until all held-out population minima and all-human/reviewed provenance requirements are met. Zero claims cannot produce perfect precision. Even a benchmark pass is not user acceptance or proof of learning. The CLI evaluator calculates diagnostic gates; a human still reviews licensing, annotation validity and model/policy provenance before deployment.
 
