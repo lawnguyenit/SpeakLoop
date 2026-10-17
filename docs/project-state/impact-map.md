@@ -11,6 +11,8 @@ Offline evaluation infrastructure exists in `src/speakloop/`. No learner-facing 
 | Diagnostic metrics and numeric/data gates | Codex: `evaluation.py` | `speakloop evaluate` | Precision/Wilson, unsafe claims, abstention, coverage, latency; insufficient/fail/pass | Simulated report tests; no real pronunciation evidence |
 | WAV physical validity | Codex: `audio.py` | `speakloop audio` | Invalid or needs-speech-check result; never approves pronunciation | Generated signal/malformed-audio tests |
 | Offline CLI and packaging | Codex: `cli.py`, `pyproject.toml`, `uv.lock` | Local developer commands | Exit 0/2/3; UTF-8 saved JSON and ASCII-safe stdout | Installed CLI smoke and legacy-terminal regression |
+| Local ASR evidence and abstention | Codex: `local_asr.py` | `speakloop asr`, smoke runner | Existing local model only; weights digest, raw transcript/word timings; invalid audio stops; no phoneme verdict | Real CPU/offline run and provider-failure/abstention tests |
+| Explicit public asset preparation | Codex: `scripts/prepare_local_asr.py` | Local ASR smoke | Pinned model revision and public-sample digest; downloads only in preparation; ignored `.local/` | Actual preparation and decoder run; no private data used |
 
 | Capability | UI owner | API/domain owner | Data | Audio/model | Errors/logging | Tests/deploy |
 |---|---|---|---|---|---|---|

@@ -24,3 +24,4 @@ The user explicitly authorizes autonomous `git add`, `git commit`, and `git push
 - Personal recordings stay local unless the user explicitly accepts a named provider and its data use.
 - Provider text/transcription alone does not justify a phoneme-error claim. Follow `docs/evaluation-protocol.md` and record implementation/verification separately in `docs/project-state/`.
 - Codex coordinates UI work directly with Antigravity when needed; the user should not be the prompt/file relay.
+- Execute the plan in manageable work chunks. Decide routine details within the authorized scope, then report the completed/current phase, checks, remaining gaps and next chunk. Keep `docs/execution-status.md` current; do not repeatedly ask the user to make routine implementation decisions.

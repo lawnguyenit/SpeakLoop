@@ -1,4 +1,4 @@
-"""Offline evaluation commands. This module makes no model/API calls."""
+"""Offline evaluation and local analysis commands. No hosted model calls."""
 
 import argparse
 import hashlib
@@ -28,6 +28,10 @@ def _parser() -> argparse.ArgumentParser:
     report.add_argument("--output", type=Path)
     audio = commands.add_parser("audio", help="Inspect physical PCM16 WAV properties")
     audio.add_argument("path", type=Path)
+    asr = commands.add_parser("asr", help="Collect local ASR evidence; never a phoneme verdict")
+    asr.add_argument("path", type=Path)
+    asr.add_argument("--config", type=Path, required=True)
+    asr.add_argument("--output", type=Path)
     schemas = commands.add_parser("schemas", help="Export schemas from authoritative contracts")
     schemas.add_argument("--output-dir", type=Path, default=Path("benchmark/schemas"))
     return parser
@@ -49,6 +53,12 @@ def main(argv: list[str] | None = None) -> int:
                     encoding="utf-8",
                 )
             result = {"schemas_written": 3, "directory": str(args.output_dir)}
+        elif args.command == "asr":
+            from speakloop.local_asr import LocalAsrConfig, LocalWhisper, analyze_wav
+
+            config = LocalAsrConfig.model_validate_json(args.config.read_text("utf-8"))
+            result = analyze_wav(args.path, LocalWhisper(config))
+            code = 0 if result["evidence"] is not None else 3
         elif args.command == "audio":
             result = inspect_wav(args.path)
             code = 0 if result["status"] != "invalid" else 3

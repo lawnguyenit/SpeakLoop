@@ -1,0 +1,58 @@
+{
+  "purpose": "local_public_audio_smoke_only",
+  "recorded_at_utc": "2026-10-17T10:26:18.295245+00:00",
+  "code_base_commit": "5f0d802b2a271ab06a0a45da037a1b6fd88a45c3",
+  "analysis_source_sha256": "f4dba46754627432e552bec5b1219f71bc697ec76235eaa67e77c3058b58bb7e",
+  "python": "3.13.5",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "versions": {
+    "faster-whisper": "1.2.1",
+    "ctranslate2": "4.8.3",
+    "av": "16.1.0"
+  },
+  "model": "Systran/faster-whisper-tiny.en",
+  "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+  "model_sha256": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a",
+  "device": "cpu",
+  "compute_type": "int8",
+  "cpu_threads": 4,
+  "public_sample_source": "https://raw.githubusercontent.com/SYSTRAN/faster-whisper/master/tests/data/jfk.flac",
+  "source_sha256": "63a4b1e4c1dc655ac70961ffbf518acd249df237e5a0152faae9a4a836949715",
+  "normalized_audio_sha256": "b9e1ae4e0837e7b99f05e4f61f70f5732320a56614ab4514d803fa85f9a563c4",
+  "duration_seconds": 11.0,
+  "runs": [
+    {
+      "latency_ms": 1097.66,
+      "model_load_ms": 256.82,
+      "inference_ms": 447.33,
+      "word_timing_count": 22,
+      "decision": "abstain"
+    },
+    {
+      "latency_ms": 407.73,
+      "model_load_ms": 0.0,
+      "inference_ms": 388.39,
+      "word_timing_count": 22,
+      "decision": "abstain"
+    },
+    {
+      "latency_ms": 412.43,
+      "model_load_ms": 0.0,
+      "inference_ms": 392.66,
+      "word_timing_count": 22,
+      "decision": "abstain"
+    }
+  ],
+  "audio_validity": "needs_speech_check",
+  "diagnosis_gate_passed": false,
+  "personal_audio_used": false,
+  "cloud_audio_upload": false,
+  "api_service_spend_usd": 0,
+  "limitations": [
+    "One public native-English sample, not L2 contrast evaluation",
+    "Three timings are observations, not a representative p95 benchmark",
+    "ASR word timestamps have not been independently validated",
+    "No calibrated pronunciation evidence; all attempts abstain",
+    "Speech/noise model gate and human held-out benchmark remain pending"
+  ]
+}

@@ -17,6 +17,7 @@
 | REQ-09 | When UI work is needed, Codex should ask Antigravity to do it rather than requiring the user to relay prompts/files | Codex owns the coordination and communicates the UI task directly through the installed Antigravity app where feasible | approved | Conversation, 2026-10-17 |
 | REQ-10 | “bắt đầu đi”, after reviewing the revised evaluation-first implementation plan | Start executing the revised plan with its proposed defaults; this does not authorize paid service use or uploading personal recordings | approved | Conversation, 2026-10-17 |
 | REQ-11 | Automatically add, commit and push important updates throughout implementation; repo `https://github.com/lawnguyenit/SpeakLoop.git` | Maintain meaningful incremental GitHub checkpoints without asking the user to run Git or waiting until the end | approved | Conversation, 2026-10-17 |
+| REQ-12 | Execute the workflow in manageable stages; decide routine details and report what was completed, checked, still missing, and what stage comes next | Continue autonomously within approved constraints and keep progress understandable | approved | Conversation, 2026-10-17 |
 
 ## Approved decisions
 
