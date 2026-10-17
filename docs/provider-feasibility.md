@@ -17,7 +17,7 @@ CPU inference has now been exercised; CUDA/GPU inference and diagnostic accuracy
 |---|---|---|---|
 | Gemini free-tier transcription/audio understanding | Transcript, available timestamps, auxiliary audio reasoning | Phoneme-specific error diagnosis, calibrated confidence, account quota | Not called; no credentials requested or personal audio sent |
 | Gemini free-tier TTS | Candidate reference audio from reviewed text | Contrast/dialect consistency and lesson suitability | Not called |
-| `facebook/wav2vec2-lv-60-espeak-cv-ft` locally | Predicted phonetic labels and acoustic logits | Localization and calibration on Vietnamese beginner speech; valid-variant behavior | Candidate only; not installed or downloaded |
+| `facebook/wav2vec2-lv-60-espeak-cv-ft` locally | Predicted phonetic labels and acoustic logits | Localization and calibration on Vietnamese beginner speech; valid-variant behavior | Pinned CPU snapshot ran on two public clips; not eligible for learner diagnosis |
 | `faster-whisper` locally | ASR transcript and optional word timing | A transcript is not pronunciation diagnosis | tiny.en CPU/int8 snapshot tested, including offline mode; app decision remains abstain |
 
 Google documents free access for selected model paths, model/project rate limits, and product-improvement data use on free-tier content. Actual account access and quotas must be checked before calls. Avoid any billing-enabled fallback. [Official pricing](https://ai.google.dev/gemini-api/docs/pricing), [audio capabilities](https://ai.google.dev/gemini-api/docs/audio), [rate limits](https://ai.google.dev/gemini-api/docs/rate-limits).
@@ -40,4 +40,6 @@ An actual run failed with PyAV 19.0.1 because faster-whisper 1.2.1 passes `metad
 
 ## Next experiment
 
-Next try the local phonetic-label candidate and document its actual output. Independently acquire eligible human examples, inspect contrast-specific annotations and reserve speaker-disjoint calibration/held-out splits. Freeze protocol/manifest/model settings before diagnostic comparison. The selected diagnostic provider remains **none**; specific pronunciation claims stay disabled.
+The phonetic-label candidate has now run on the public native and L2 examples. See [phonetic smoke evidence](evidence/phonetic-smoke.json). The L2 clip produced multilingual labels (including digit-bearing labels), without a validated English target alignment. Do not mask these outputs into an apparently certain English diagnosis. This snapshot is suitable for further evidence experiments, not corrective claims.
+
+The next research requirement is eligible, independently labeled human contrast data and a speaker-disjoint calibration/held-out split. This is separate from shipping the local listening/self-comparison alpha. The selected diagnostic provider remains **none**.

@@ -18,6 +18,7 @@
 | REQ-10 | “bắt đầu đi”, after reviewing the revised evaluation-first implementation plan | Start executing the revised plan with its proposed defaults; this does not authorize paid service use or uploading personal recordings | approved | Conversation, 2026-10-17 |
 | REQ-11 | Automatically add, commit and push important updates throughout implementation; repo `https://github.com/lawnguyenit/SpeakLoop.git` | Maintain meaningful incremental GitHub checkpoints without asking the user to run Git or waiting until the end | approved | Conversation, 2026-10-17 |
 | REQ-12 | Execute the workflow in manageable stages; decide routine details and report what was completed, checked, still missing, and what stage comes next | Continue autonomously within approved constraints and keep progress understandable | approved | Conversation, 2026-10-17 |
+| REQ-13 | Use the user's Google account in Microsoft Edge for needed sign-in/registration where supported; obtain needed tokens and keep implementing; user will review at the end | Use authorized existing browser sessions and necessary free service access, keep credentials local, and progress across stages without routine review pauses | approved | Conversation, 2026-10-17 |
 
 ## Approved decisions
 

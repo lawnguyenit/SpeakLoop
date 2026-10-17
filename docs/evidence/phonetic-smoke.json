@@ -1,0 +1,52 @@
+{
+  "purpose": "public_phonetic_smoke_not_diagnostic_validation",
+  "model": "facebook/wav2vec2-lv-60-espeak-cv-ft",
+  "revision": "ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4",
+  "weights_sha256": "3173bde9e9ce490fa0f989e413c42f25bc1820c020adc1e6b9b87025b3cfcc5e",
+  "torch_version": "2.14.1+cpu",
+  "device": "cpu",
+  "load_ms": 134.61830001324415,
+  "cuda_tested": false,
+  "diagnosis_ready": false,
+  "runs": [
+    {
+      "sample": "jfk.pcm16.wav",
+      "sample_sha256": "b9e1ae4e0837e7b99f05e4f61f70f5732320a56614ab4514d803fa85f9a563c4",
+      "duration_seconds": 11.0,
+      "inference_ms": 3955.55,
+      "decision": "abstain",
+      "reason": "phonetic_evidence_not_calibrated",
+      "label_count": 68,
+      "example_labels": [
+        "\u00e6",
+        "n",
+        "d",
+        "s",
+        "o\u028a",
+        "m"
+      ]
+    },
+    {
+      "sample": "lxc_arctic_a0018.wav",
+      "sample_sha256": "f4eed842118140c5e33eb9b51dfab2f898069df86ae7b0d725a46c7209afe4dc",
+      "duration_seconds": 1.6215,
+      "inference_ms": 535.92,
+      "decision": "abstain",
+      "reason": "phonetic_evidence_not_calibrated",
+      "label_count": 13,
+      "example_labels": [
+        "l",
+        "i\u025b5",
+        "w",
+        "o\u025c",
+        "s",
+        "\u02591"
+      ]
+    }
+  ],
+  "limitations": [
+    "Two public recordings; not an independently labeled held-out pronunciation benchmark",
+    "The L2 example produced language-specific labels such as i5 and i.5; English contrast alignment and calibration are absent",
+    "No phoneme error or correctness claims are enabled"
+  ]
+}

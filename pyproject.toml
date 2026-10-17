@@ -3,16 +3,31 @@ name = "speakloop"
 version = "0.1.0"
 description = "Evaluation-first pronunciation learning experiments"
 requires-python = ">=3.11"
-dependencies = ["pydantic>=2.12,<3"]
+dependencies = [
+    "fastapi>=0.115,<1",
+    "pydantic>=2.12,<3",
+    "python-multipart>=0.0.20,<1",
+    "uvicorn>=0.34,<1",
+]
 
 [project.scripts]
 speakloop = "speakloop.cli:main"
 
 [dependency-groups]
-dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+dev = [
+    "httpx>=0.28,<1",
+    "pytest>=8,<10",
+    "ruff>=0.11,<1",
+]
 asr = [
     "av>=11,<17",
     "faster-whisper>=1.1,<2",
+]
+phonetic = [
+    "numpy>=2,<3",
+    "safetensors>=0.5,<1",
+    "torch>=2.6,<3",
+    "transformers>=4.50,<5",
 ]
 
 [build-system]
