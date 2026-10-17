@@ -2,7 +2,7 @@
 
 **Status:** MVP starting scope authorized; detailed evaluation governed by the implementation plan/protocol
 **Last updated:** 2026-10-17
-**Product stage:** Phase 1A evaluation infrastructure in progress; no learner-facing app yet.
+**Product stage:** Local alpha implementation and integration; phoneme diagnosis remains unvalidated and disabled.
 
 **Budget constraint:** The MVP must not incur API or model-service charges. Use a free tier, a time-limited free trial, or locally run open-source software only. Do not silently switch to a paid tier when a quota is reached.
 

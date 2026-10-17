@@ -20,3 +20,6 @@ benchmark/private/
 *.bin
 node_modules/
 dist/
+*.tsbuildinfo
+*.sqlite3
+*.sqlite3-*

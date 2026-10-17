@@ -45,7 +45,7 @@ Body `{mode:"baseline"|"practice"|"review",language:"vi"|"en"}`. Returns a sessi
 }
 ```
 
-Phases: `perception`, `word`, `sentence`, `complete`. `trial` is present only for perception; `prompt` only for word/sentence. Prompt shape: `{id,text,target_word,target_ipa,segment_start,segment_end,audio_url,guidance:{vi,en}}`. Offsets are Unicode code-point offsets; current English prompts use ASCII spelling. Current/total are per phase, 1-based; complete returns 0/0.
+Phases: `perception`, `word`, `sentence`, `complete`. `trial` is present only for perception; `prompt` only for word/sentence. Prompt shape: `{id,text,target_word,target_ipa,segment_start,segment_end,audio_url,guidance:{vi,en}}`. Offsets are Unicode code-point offsets; current English prompts use ASCII spelling. Current/total are per phase, 1-based; complete returns 0/0. Per-session `perception.correct` is `number|null`: baseline/review scores stay null until session completion, including in progress-history responses. Aggregate progress counts only visible scores.
 
 ### POST /api/sessions/{id}/answers
 

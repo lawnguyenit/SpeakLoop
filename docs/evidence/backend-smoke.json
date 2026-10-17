@@ -1,0 +1,42 @@
+{
+  "purpose": "public_off_prompt_audio_API_plumbing_only",
+  "health": {
+    "status": "ok",
+    "diagnosis_ready": false,
+    "reference_audio_ready": true,
+    "reference_audio_reviewed": false,
+    "local_asr_available": true
+  },
+  "listening_trials": 8,
+  "production_requests": [
+    {
+      "decision": "abstain",
+      "transcript_present": true,
+      "latency_ms": 2494.21
+    },
+    {
+      "decision": "abstain",
+      "transcript_present": true,
+      "latency_ms": 1196.91
+    },
+    {
+      "decision": "abstain",
+      "transcript_present": true,
+      "latency_ms": 2900.42
+    },
+    {
+      "decision": "abstain",
+      "transcript_present": true,
+      "latency_ms": 941.53
+    }
+  ],
+  "final_phase": "complete",
+  "review_scheduled": true,
+  "temporary_audio_cleaned": true,
+  "api_service_spend_usd": 0,
+  "personal_audio_used": false,
+  "limitations": [
+    "Not evidence of pronunciation accuracy or learning efficacy",
+    "Reference clips are machine-generated and unreviewed"
+  ]
+}
