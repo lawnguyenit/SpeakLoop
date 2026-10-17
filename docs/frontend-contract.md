@@ -7,7 +7,7 @@ Status: implementation contract for the local listening/self-comparison alpha. P
 - Backend: `http://127.0.0.1:8765`, FastAPI, SQLite under `.local/`.
 - Frontend: React/TypeScript + Vite in `frontend/`. Dev proxy `/api` to backend; dev port 5178. Production build served by FastAPI at `/`.
 - Antigravity owns only `frontend/**`; Codex owns backend, content, contracts, tests and Git. Do not run Git mutations or edit shared/backend files from Antigravity.
-- A single local user; no signup/payment flow. No voice upload to third-party services and no stored raw recording. Browser records and plays the learner's local take; sending to localhost is optional for analysis.
+- A single local user; no signup/payment flow. No voice upload to third-party services and no stored raw recording. On stopping a take, the browser sends it to the local backend for physical checks and optional local ASR, and retains a memory-only copy for playback until leaving the prompt.
 
 ## Endpoints and shapes
 
@@ -17,7 +17,7 @@ Status: implementation contract for the local listening/self-comparison alpha. P
 
 ### GET /api/lesson
 
-`{id:"ih-ee-v1", title:{vi,en}, contrast:["/ɪ/","/iː/"], reference_accent:"en-US", pairs:[{id,words:[{id,text,ipa,meaning_vi}]}], explanation:{vi,en}, production_guidance:{vi,en}, audio_reviewed:false}`.
+`{id:"ih-ee-v1", title:{vi,en}, contrast:["/ɪ/","/iː/"], reference_accent:"en-US", pairs:[{id,words:[{id,text,ipa,meaning_vi,meaning_en}]}], explanation:{vi,en}, production_guidance:{vi,en}, audio_reviewed:false}`. Word glosses follow the selected explanation language.
 
 ### GET /api/settings; PUT /api/settings
 
@@ -41,6 +41,7 @@ Body `{mode:"baseline"|"practice"|"review",language:"vi"|"en"}`. Returns a sessi
   "prompt":null,
   "perception":{"correct":0,"total":0,"accuracy":null},
   "production_attempts":0,
+  "can_advance":false,
   "review_due_at":null
 }
 ```
@@ -56,6 +57,8 @@ Body `{trial_id,option_id}`. Returns `{correct:boolean|null,correct_option_id:st
 Multipart `file` = PCM16 mono WAV, 16 kHz (up to 15 s / 10 MiB), `prompt_id`, `attempt_id` = browser-generated UUID. Return `{attempt_id,decision:"abstain"|"invalid_audio",reason,feedback:{vi,en},audio_quality:{...},transcript:string|null,latency_ms,diagnosis_ready:false}`. A physical check failure returns a safe retry explanation; no phoneme verdict. Valid recordings may return a local ASR transcript, which must be labeled approximate. Never turn transcript mismatch into red/green pronunciation highlighting. Repeated same attempt/prompt/audio returns the cached safe result; differing content under the same ID returns 409. Audio is discarded after processing; only safe attempt metadata persists.
 
 Use Web Audio recording and resample/encode locally to 16 kHz PCM16 WAV; do not depend on native MediaRecorder WebM being accepted by the backend. Provide mic permission denied/unsupported feedback and a stop limit. Keep a local Blob/object URL for self-playback; revoke URLs and stop microphone tracks when leaving the activity. No auto-recording on page load.
+
+Production session views include `can_advance:boolean`, derived from previously stored non-invalid attempts for the current prompt. Use it to keep Next available after a reload/resume; it does not imply a correct pronunciation. It is false outside production phases.
 
 ### POST /api/sessions/{id}/advance
 

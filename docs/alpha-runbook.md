@@ -12,6 +12,10 @@ From the project root:
 
 Open `http://127.0.0.1:8765`. Stop with Ctrl+C. The launcher builds frontend assets if missing and prepares offline reference voices when needed. Progress is in `.local/speakloop.sqlite3`; raw takes and ASR transcripts are not stored there. Microphone recording starts only when the learner presses Record and permits it in the browser.
 
+If frontend source changes after the first build, run `npm --prefix frontend run build` before restarting; the launcher only rebuilds missing assets. Choose practice for immediate listening feedback, baseline to hide per-item answers, or review for a separate listening word set. Production moves from words to sentences; moving on after a usable take does not certify correct pronunciation. Reload returns to Home, where Resume restores the current server step. Explanations and word glosses switch between Vietnamese and English.
+
+The browser walkthrough used `.local/browser-smoke/`, separate from normal learner progress. Its scores are arbitrary interaction exercises, not learning or model evidence. Real microphone capture has not yet been exercised on this device.
+
 ## Set up another Windows checkout
 
 Requirements: Python 3.11+, uv, Node/npm, and the Microsoft David/Zira Desktop English SAPI voices available on this workstation.

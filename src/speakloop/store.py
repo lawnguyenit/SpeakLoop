@@ -85,6 +85,16 @@ class Store:
                     {k: option[k] for k in ("id", "text", "ipa")} for option in item["options"]
                 ],
             }
+        prompt = production_prompt(position - 8) if 8 <= position < 12 else None
+        can_advance = False
+        if prompt:
+            prior = db.execute(
+                "SELECT result_json FROM attempts WHERE session_id=? AND prompt_id=?",
+                (row["id"], prompt["id"]),
+            ).fetchall()
+            can_advance = any(
+                json.loads(attempt[0])["decision"] != "invalid_audio" for attempt in prior
+            )
         return {
             "id": row["id"],
             "mode": row["mode"],
@@ -95,7 +105,8 @@ class Store:
             else ((position - 8) % 2 + 1 if position < 12 else 0),
             "total": 8 if position < 8 else (2 if position < 12 else 0),
             "trial": trial,
-            "prompt": production_prompt(position - 8) if 8 <= position < 12 else None,
+            "prompt": prompt,
+            "can_advance": can_advance,
             "perception": score,
             "production_attempts": db.execute(
                 "SELECT COUNT(*) FROM attempts WHERE session_id=?", (row["id"],)

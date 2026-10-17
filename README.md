@@ -2,7 +2,7 @@
 
 English sound-contrast practice for a Vietnamese beginner. Initial target: `/ɪ/`–`/iː/`; en-US lesson reference, accepting intelligible variants that preserve the contrast. MVP model/API budget: **USD 0**.
 
-Current milestone: local alpha integration. FastAPI/SQLite now runs listening trials, word/sentence recording, local ASR abstention, progress and revisit scheduling. Antigravity is implementing the frontend. No pronunciation model has passed the diagnostic benchmark; reference audio remains unreviewed.
+Current milestone: local private alpha. The React interface is integrated with FastAPI/SQLite for listening trials, word/sentence recording, local ASR abstention, progress and revisit scheduling. Codex coordinated the frontend directly with Antigravity and reviewed the integration. No pronunciation model has passed the diagnostic benchmark; reference audio remains unreviewed. Real-device microphone capture still needs verification.
 
 ## Local application
 

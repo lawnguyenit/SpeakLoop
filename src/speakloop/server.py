@@ -133,15 +133,36 @@ def create_app(
     )
 
     def error(request, status, code):
+        messages = {
+            "recording_required": {
+                "vi": "Hãy ghi âm một lượt đủ rõ trước khi sang bước tiếp theo.",
+                "en": "Record one clear attempt before moving on.",
+            },
+            "activity_changed": {
+                "vi": "Bài học đã chuyển bước. Mở lại phiên học để tiếp tục đúng vị trí.",
+                "en": "The lesson has moved on. Reopen the session to continue.",
+            },
+            "reference_audio_unavailable": {
+                "vi": "Giọng mẫu chưa sẵn sàng. Hãy thử lại sau.",
+                "en": "The reference audio is not available yet. Please try again later.",
+            },
+            "recording_too_large": {
+                "vi": "Bản thu quá lớn. Hãy thu một đoạn ngắn, tối đa 15 giây.",
+                "en": "The recording is too large. Please record at most 15 seconds.",
+            },
+        }
         return JSONResponse(
             status_code=status,
             content={
                 "error": {
                     "code": code,
-                    "message": {
-                        "vi": "Không thể thực hiện bước này. Thử lại hoặc mở lại bài học.",
-                        "en": "This step could not be completed. Retry or reopen the lesson.",
-                    },
+                    "message": messages.get(
+                        code,
+                        {
+                            "vi": "Không thể thực hiện bước này. Thử lại hoặc mở lại bài học.",
+                            "en": "This step could not be completed. Retry or reopen the lesson.",
+                        },
+                    ),
                     "request_id": getattr(request.state, "request_id", uuid4().hex),
                 }
             },

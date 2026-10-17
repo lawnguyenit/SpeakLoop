@@ -165,6 +165,22 @@ def test_preferences_persist_across_app_restarts(tmp_path):
         assert second.get("/api/settings").json() == {"language": "en"}
 
 
+def test_production_resume_preserves_advance_eligibility_without_storing_audio(client):
+    session = finish_listening(client)
+    assert not session["can_advance"]
+    assert submit_recording(client, session).status_code == 200
+    root = client.app.state.runtime.store.path.parent
+    with TestClient(create_app(data_dir=root)) as resumed:
+        current = resumed.get(f"/api/sessions/{session['id']}").json()
+        assert current["can_advance"]
+        response = resumed.post(
+            f"/api/sessions/{session['id']}/advance", json={"prompt_id": current["prompt"]["id"]}
+        )
+        assert response.status_code == 200
+        assert not response.json()["can_advance"]
+    assert list(client.app.state.runtime.temp_dir.iterdir()) == []
+
+
 def test_invalid_inputs_origins_and_unknown_assets_return_safe_errors(client):
     assert client.post("/api/sessions", json={"mode": "other"}).status_code == 422
     assert (

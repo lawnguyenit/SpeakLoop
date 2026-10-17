@@ -34,8 +34,40 @@ WORD_DATA = [
     ("hill", "/hɪl/", "ngọn đồi"),
     ("heel", "/hiːl/", "gót chân"),
 ]
+ENGLISH_MEANINGS = {
+    "ship": "a large boat",
+    "sheep": "an animal with wool",
+    "sit": "rest on a chair",
+    "seat": "a place to sit",
+    "fill": "make full",
+    "feel": "have a feeling",
+    "bin": "a container",
+    "bean": "an edible seed",
+    "bit": "a small amount",
+    "beat": "a regular rhythm",
+    "fit": "be the right size",
+    "feet": "more than one foot",
+    "slip": "slide by accident",
+    "sleep": "rest with eyes closed",
+    "chip": "a small piece",
+    "cheap": "costing little money",
+    "grin": "smile widely",
+    "green": "the colour of grass",
+    "still": "continuing until now",
+    "steel": "a strong metal",
+    "lick": "touch with the tongue",
+    "leak": "let liquid escape",
+    "hill": "a raised area of land",
+    "heel": "the back of the foot",
+}
 WORDS = {
-    text: {"id": text, "text": text, "ipa": ipa, "meaning_vi": meaning}
+    text: {
+        "id": text,
+        "text": text,
+        "ipa": ipa,
+        "meaning_vi": meaning,
+        "meaning_en": ENGLISH_MEANINGS[text],
+    }
     for text, ipa, meaning in WORD_DATA
 }
 GUIDANCE = {
